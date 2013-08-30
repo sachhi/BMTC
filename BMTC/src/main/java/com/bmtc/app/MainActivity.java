@@ -1,21 +1,21 @@
 package com.bmtc.app;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
 
     private SlidingPaneLayout mSlidingLayout;
     private ListView mList;
+    TextView text_label_1;
 
     ArrayAdapter<String> leftListAdapter = null;
 
@@ -23,6 +23,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        text_label_1 = (TextView) findViewById(R.id.text_label_1);
+
+
+
 
         leftListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         leftListAdapter.add("Bus Detail");
@@ -34,7 +40,7 @@ public class MainActivity extends Activity {
 
         mSlidingLayout.setPanelSlideListener( new SliderListener());
         //mSlidingLayout.openPane();
-
+        //mSlidingLayout.set
 
         mList.setAdapter(leftListAdapter);
         mList.setOnItemClickListener(new ListItemClickListener());
@@ -74,6 +80,27 @@ public class MainActivity extends Activity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
             mSlidingLayout.smoothSlideClosed();
+
+            //To get value of selected item
+            String value = (String)parent.getItemAtPosition(position);
+
+            if(value == "Bus Detail")
+            {
+                text_label_1.setText("Type   :  ");
+            }
+
+            if(value == "From To")
+            {
+
+            }
+
+            if(value == "My Location")
+            {
+
+            }
+
+
+
         }
     }
 
